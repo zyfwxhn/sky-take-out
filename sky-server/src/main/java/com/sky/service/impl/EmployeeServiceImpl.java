@@ -120,5 +120,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.update(employee);
     }
 
+    @Override
+    public void editPassword(PasswordEditDTO passwordEditDTO) {
+        Employee employee = Employee.builder()
+                .id(BaseContext.getCurrentId())
+                .password(DigestUtils.md5DigestAsHex(passwordEditDTO.getNewPassword().getBytes()))
+                .updateTime(LocalDateTime.now())
+                .updateUser(BaseContext.getCurrentId())
+                .build();
+        employeeMapper.update(employee);
+    }
+
 
 }
