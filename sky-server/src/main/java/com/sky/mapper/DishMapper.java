@@ -37,4 +37,6 @@ public interface DishMapper {
     void update(Dish dish);
 
     List<Dish> selectByCategoryId(Long categoryId);
+
+    List<Dish> getBySetmealId(Long setmealId);
 }
