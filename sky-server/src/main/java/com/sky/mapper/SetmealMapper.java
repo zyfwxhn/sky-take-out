@@ -31,4 +31,6 @@ public interface SetmealMapper {
     Setmeal getById(Long id);
 
     void deleteById(Long id);
+
+    SetmealVO getByIdWithDish(Long id);
 }

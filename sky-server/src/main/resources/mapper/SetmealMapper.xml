@@ -10,7 +10,7 @@
     </insert>
 
 
-    <update id="update">
+    <update id="update" useGeneratedKeys="true" keyProperty="id">
         update setmeal
         <set>
             <if test="name != null">
@@ -72,5 +72,38 @@
     <select id="getById" resultType="com.sky.entity.Setmeal">
         select * from setmeal where id = #{id}
     </select>
+    <resultMap id="setmealWithDishMap" type="com.sky.vo.SetmealVO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="description" property="description"/>
+        <result column="image" property="image"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="categoryName" property="categoryName"/>
+
+        <collection property="setmealDishes" ofType="com.sky.entity.SetmealDish">
+            <result column="dish_id" property="dishId"/>
+            <result column="dishName" property="name"/>
+            <result column="dishPrice" property="price"/>
+            <result column="copies" property="copies"/>
+        </collection>
+    </resultMap>
+
+    <select id="getByIdWithDish" resultMap="setmealWithDishMap">
+        SELECT
+            s.*,
+            c.name AS categoryName,
+            sd.dish_id,
+            sd.name AS dishName,
+            sd.price AS dishPrice,
+            sd.copies
+        FROM setmeal s
+                 LEFT JOIN category c ON s.category_id = c.id
+                 LEFT JOIN setmeal_dish sd ON s.id = sd.setmeal_id
+        WHERE s.id = #{id}
+    </select>
+
 
 </mapper>
