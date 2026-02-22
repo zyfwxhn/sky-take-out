@@ -18,5 +18,5 @@ sky:
     password:
     database: 10
   wechat:
-    appid: ${sky.wechat.appid}
-    secret: ${sky.wechat.secret}
+    appid: ${SKY_WECHAT_APPID}
+    secret: ${SKY_WECHAT_SECRET}
