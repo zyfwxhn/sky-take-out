@@ -10,4 +10,6 @@ public interface OrderMapper {
     void insert(Orders order);
 
     Page<Orders> pageQuery(OrdersPageQueryDTO ordersPageQueryDTO);
+
+    Orders getById(Long id);
 }

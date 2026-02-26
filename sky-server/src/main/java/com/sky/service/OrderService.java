@@ -11,4 +11,6 @@ public interface OrderService {
       OrderSubmitVO submitOrder(OrdersSubmitDTO ordersSubmitDTO);
 
     PageResult pageOrders(Integer page, Integer pageSize, Integer status);
+
+    OrderVO getOrderDetail(Long id);
 }

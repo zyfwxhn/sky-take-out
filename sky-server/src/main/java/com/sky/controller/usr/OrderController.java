@@ -33,4 +33,10 @@ public class OrderController {
         PageResult pageResult = orderService.pageOrders(page, pageSize, status);
         return Result.success(pageResult);
     }
+
+    @GetMapping("orderDetail/{id}")
+    public Result<OrderVO> getOrderDetail(@PathVariable Long id){
+        OrderVO orderVO = orderService.getOrderDetail(id);
+        return Result.success(orderVO);
+    }
 }
